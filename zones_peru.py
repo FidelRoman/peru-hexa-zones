@@ -11,7 +11,7 @@ from get_coverages  import get_coverage, get_coverage_updated
 
 
 center_lat = -16.42  
-center_lon = -71.56 
+center_lon = -71.82 
 radius = 0.5            
 n_rows = 20
 n_cols = 25

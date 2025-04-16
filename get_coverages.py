@@ -1,15 +1,20 @@
 import pandas as pd
 import requests
 import json
-import time
+import os
+from dotenv import load_dotenv
 
+load_dotenv() 
+
+# Recupera el token
+AUTH_TOKEN = os.getenv("RAPPI_AUTH_TOKEN")
 
 # Función para obtener la cobertura
 def get_coverage(lat, lng):
     url = f"https://services.rappi.pe/availability/v1/has-coverage?lat={lat}&lng={lng}"
 
     headers = {
-        'Authorization': 'Bearer ft.gAAAAABn_nG4hvin9ciXkjoPL7uBq6puofPOLGSM4fF1z1xSokSiG7pmBMYDYHscXILV6QD-tVTZfw_Wt7BHCDKxx2URD6THpPLTwMCT1DwC0Tg8Py4Cr9sHOa1X91TY4hykUkN8fcqY_vIQ8gSYdPhaSvVLAZqsLgeuQNasw2XqfaZYvRaQOOS20vLnXOMDZ-kkEnem5_qY240Cg3T_ZoOZAvXGEbxYVwoui1I1rg417XdEq_k12itRPLPDzuGKORtu73GL_w1VF8vSlhXyW_Zqia0JuhMVG7X9FPG53i_CZYDPIZuWuAP6GO3fiiJgqVzlt55SnfafzzRPmTb1k8EzV1ni8982sjkqfff0CDD6lVm1ANMIaW47qkoB5wCJSg_GOvpDuZklrUzOBHE_D99cfagKotzbBg=='
+        'Authorization': f"Bearer {AUTH_TOKEN}",
     }
 
     response = requests.get(url, headers=headers)
@@ -27,7 +32,7 @@ def get_coverage_updated(lat, lng):
     url = "https://services.rappi.pe/api/web-gateway/web/restaurants-bus/stores/"
 
     headers = {
-        'Authorization': 'Bearer ft.gAAAAABn_nG4hvin9ciXkjoPL7uBq6puofPOLGSM4fF1z1xSokSiG7pmBMYDYHscXILV6QD-tVTZfw_Wt7BHCDKxx2URD6THpPLTwMCT1DwC0Tg8Py4Cr9sHOa1X91TY4hykUkN8fcqY_vIQ8gSYdPhaSvVLAZqsLgeuQNasw2XqfaZYvRaQOOS20vLnXOMDZ-kkEnem5_qY240Cg3T_ZoOZAvXGEbxYVwoui1I1rg417XdEq_k12itRPLPDzuGKORtu73GL_w1VF8vSlhXyW_Zqia0JuhMVG7X9FPG53i_CZYDPIZuWuAP6GO3fiiJgqVzlt55SnfafzzRPmTb1k8EzV1ni8982sjkqfff0CDD6lVm1ANMIaW47qkoB5wCJSg_GOvpDuZklrUzOBHE_D99cfagKotzbBg==',
+        'Authorization': f"Bearer {AUTH_TOKEN}",
         'content-type': 'application/json'
     }
 
