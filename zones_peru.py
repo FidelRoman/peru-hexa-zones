@@ -12,7 +12,7 @@ from get_coverages  import get_coverage, get_coverage_updated
 
 center_lat = -16.42  
 center_lon = -71.56 
-radius = 1            
+radius = 0.5            
 n_rows = 20
 n_cols = 25
 ciudad = "AREQUIPA"
@@ -32,7 +32,7 @@ def create_hexagon(center_lat, center_lon, radius):
     return Polygon(points)
 
 
-df_districts = pd.read_csv("peru_districts_shape.csv") 
+df_districts = pd.read_csv("assets/peru_districts_shape.csv")
 
 district_polygons = []
 for i, wkt_str in enumerate(df_districts["geo_shape"]):
@@ -76,12 +76,12 @@ for row in range(n_rows):
         zone_id += 1
 
 df_hex = pd.DataFrame(hex_records)
-df_hex.to_csv("hexagonos_generados.csv", index=False)
+df_hex.to_csv("a_hexagonos_generados.csv", index=False)
 
 # ------------------------------------------------
 # Asignar un distrito a cada hexágono
 # ------------------------------------------------
-df_hex_loaded = pd.read_csv("hexagonos_generados.csv")
+df_hex_loaded = pd.read_csv("a_hexagonos_generados.csv")
 
 output_records = []
 for _, row in df_hex_loaded.iterrows():
@@ -103,9 +103,9 @@ for _, row in df_hex_loaded.iterrows():
             break
 
 df_final = pd.DataFrame(output_records)
-df_final.to_csv("hexagonos_peru.csv", index=False)
+df_final.to_csv("b_hexagonos_peru.csv", index=False)
 
-print("Proceso finalizado. Revisa el archivo 'hexagonos_peru.csv'.")
+print("Proceso finalizado. Revisa el archivo 'b_hexagonos_peru.csv'.")
 
 
 df_final["geometry"] = df_final["hexagono_shape"].apply(wkt.loads)
@@ -123,8 +123,8 @@ gdf_final = gpd.GeoDataFrame(df_final, geometry="geometry", crs="EPSG:4326")
 #         tooltip=f"{row['hexagono_id']} - {row['nombdist']}"
 #     ).add_to(m)
 
-# m.save("hexagonos_peru_final_map.html")
-# print("Mapa guardado como hexagonos_peru_final_map.html")
+# m.save("b_hexagonos_peru_final_map.html")
+# print("Mapa guardado como b_hexagonos_peru_final_map.html")
 
 
 
@@ -134,7 +134,7 @@ cities = []
 zones = []
 # Recorrer cada fila del DataFrame y obtener cobertura
 
-peru_zones = pd.read_csv("hexagonos_peru.csv")
+peru_zones = pd.read_csv("b_hexagonos_peru.csv")
 peru_zones = peru_zones[peru_zones["nombprov"] == ciudad]
 
 
@@ -151,7 +151,7 @@ peru_zones["has_coverage"] = coverages
 peru_zones["city"] = cities
 peru_zones["zone_rappi"] = zones 
 
-peru_zones.to_csv("hexagonos_peru_rappi.csv", index=False, encoding="utf-8")
+peru_zones.to_csv("c_hexagonos_peru_rappi.csv", index=False, encoding="utf-8")
 
 coverage_messages = []
 for index, row in peru_zones.iterrows():
@@ -163,4 +163,4 @@ for index, row in peru_zones.iterrows():
 peru_zones["coverage_messages"] = coverage_messages
 peru_zones["timestamp"] = pd.Timestamp.now()
 
-peru_zones.to_csv("hexagonos_peru_rappi_final.csv", index=False, encoding="utf-8")
+peru_zones.to_csv("d_hexagonos_peru_rappi_final.csv", index=False, encoding="utf-8")
