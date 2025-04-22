@@ -38,7 +38,8 @@ for i, wkt_str in enumerate(df_districts["geo_shape"]):
 # ---------------------------------------
 # Función principal por ciudad
 # ---------------------------------------
-def procesar_ciudad(ciudad, center_lon, center_lat, radius=0.5, n_rows=20, n_cols=25):
+# def procesar_ciudad(ciudad, center_lon, center_lat, radius=0.5, n_rows=20, n_cols=25):
+def procesar_ciudad(ciudad, center_lon, center_lat, radius=0.5, n_rows=80, n_cols=80):
     print(f"Procesando ciudad: {ciudad}...")
     hex_records = []
     zone_id = 1
@@ -114,7 +115,8 @@ def procesar_ciudad(ciudad, center_lon, center_lat, radius=0.5, n_rows=20, n_col
 # Lista de ciudades y coordenadas
 # ---------------------------------------
 ciudades = [
-    {"ciudad": "Arequipa",  "center_lon": -71.59923629, "center_lat": -16.4645831},
+    {"ciudad": "Lima",  "center_lon": -77.17, "center_lat": -12.40},
+    # {"ciudad": "Arequipa",  "center_lon": -71.59923629, "center_lat": -16.4645831},
     # {"ciudad": "Chiclayo",  "center_lon": -79.906642,    "center_lat": -6.819968},
     # {"ciudad": "Huancayo",  "center_lon": -75.2658686,   "center_lat": -12.099199},
     # {"ciudad": "Trujillo",  "center_lon": -79.07767037,  "center_lat": -8.15671},
