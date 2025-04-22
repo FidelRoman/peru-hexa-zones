@@ -114,12 +114,12 @@ def procesar_ciudad(ciudad, center_lon, center_lat, radius=0.5, n_rows=20, n_col
 # Lista de ciudades y coordenadas
 # ---------------------------------------
 ciudades = [
-    # {"ciudad": "Arequipa",  "center_lon": -71.58223629, "center_lat": -16.4555831},
-    # {"ciudad": "Chiclayo",  "center_lon": -79.902642,    "center_lat": -6.815968},
-    # {"ciudad": "Huancayo",  "center_lon": -75.2618686,   "center_lat": -12.097199},
-    {"ciudad": "Trujillo",  "center_lon": -79.07367037,  "center_lat": -8.15271},
-    {"ciudad": "Ica",       "center_lon": -75.765778,    "center_lat": -14.10952},
-    {"ciudad": "Piura",     "center_lon": -80.68702763,  "center_lat": -5.238906}
+    {"ciudad": "Arequipa",  "center_lon": -71.59923629, "center_lat": -16.4645831},
+    # {"ciudad": "Chiclayo",  "center_lon": -79.906642,    "center_lat": -6.819968},
+    # {"ciudad": "Huancayo",  "center_lon": -75.2658686,   "center_lat": -12.099199},
+    # {"ciudad": "Trujillo",  "center_lon": -79.07767037,  "center_lat": -8.15671},
+    # {"ciudad": "Ica",       "center_lon": -75.769778,    "center_lat": -14.11352},
+    # {"ciudad": "Piura",     "center_lon": -80.69102763,  "center_lat": -5.242906}
     
 ]
 
