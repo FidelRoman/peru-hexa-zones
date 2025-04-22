@@ -10,11 +10,12 @@ import time
 from get_coverages  import get_coverage, get_coverage_updated
 
 
-center_lat = -16.42  
-center_lon = -71.55 
+
 radius = 0.5            
 n_rows = 20
 n_cols = 25
+center_lat = -16.42 
+center_lon = -71.55
 ciudad = "AREQUIPA"
 
 
@@ -163,4 +164,4 @@ for index, row in peru_zones.iterrows():
 peru_zones["coverage_messages"] = coverage_messages
 peru_zones["timestamp"] = pd.Timestamp.now()
 
-peru_zones.to_csv("d_hexagonos_peru_rappi_final.csv", index=False, encoding="utf-8")
+peru_zones.to_csv(f"d_hexagonos_rappi_{ciudad}.csv", index=False, encoding="utf-8")
