@@ -39,7 +39,7 @@ for i, wkt_str in enumerate(df_districts["geo_shape"]):
 # Función principal por ciudad
 # ---------------------------------------
 # def procesar_ciudad(ciudad, center_lon, center_lat, radius=0.5, n_rows=20, n_cols=25):
-def procesar_ciudad(ciudad, center_lon, center_lat, radius=0.5, n_rows=80, n_cols=80):
+def procesar_ciudad(ciudad, center_lon, center_lat, radius=0.5, n_rows=20, n_cols=25):
     print(f"Procesando ciudad: {ciudad}...")
     hex_records = []
     zone_id = 1
@@ -107,7 +107,7 @@ def procesar_ciudad(ciudad, center_lon, center_lat, radius=0.5, n_rows=80, n_col
     df_final["timestamp"] = pd.Timestamp.now()
 
     # Guardar **solo** el CSV final
-    output_path = f"{ciudad.lower()}_hexagonos_final.csv"
+    output_path = f"data/{ciudad.lower()}_hexagonos_final.csv"
     df_final.to_csv(output_path, index=False)
     print(f"✓ CSV final guardado en: {output_path}")
 
@@ -115,16 +115,40 @@ def procesar_ciudad(ciudad, center_lon, center_lat, radius=0.5, n_rows=80, n_col
 # Lista de ciudades y coordenadas
 # ---------------------------------------
 ciudades = [
-    {"ciudad": "Lima",  "center_lon": -77.17, "center_lat": -12.40},
-    # {"ciudad": "Arequipa",  "center_lon": -71.59923629, "center_lat": -16.4645831},
-    # {"ciudad": "Chiclayo",  "center_lon": -79.906642,    "center_lat": -6.819968},
-    # {"ciudad": "Huancayo",  "center_lon": -75.2658686,   "center_lat": -12.099199},
-    # {"ciudad": "Trujillo",  "center_lon": -79.07767037,  "center_lat": -8.15671},
-    # {"ciudad": "Ica",       "center_lon": -75.769778,    "center_lat": -14.11352},
-    # {"ciudad": "Piura",     "center_lon": -80.69102763,  "center_lat": -5.242906}
-    
+    # # {"ciudad": "Arequipa", "center_lon": -71.59823629, "center_lat": -16.4715831},
+    # {"ciudad": "Ayacucho", "center_lon": -74.2568446, "center_lat": -13.2222462},
+    # {"ciudad": "Cajamarca", "center_lon": -78.545282, "center_lat": -7.21106},
+    # {"ciudad": "Cañete", "center_lon": -76.4143361, "center_lat": -13.1051316},
+    # {"ciudad": "Centro", "center_lon": -77.08749557, "center_lat": -12.1561274},
+    # # {"ciudad": "Chiclayo", "center_lon": -79.918642, "center_lat": -6.831968},
+    # {"ciudad": "Chimbote", "center_lon": -78.624955, "center_lat": -9.174626756},
+    # {"ciudad": "Chincha alta", "center_lon": -76.19793039, "center_lat": -13.46808},
+    # {"ciudad": "Cusco", "center_lon": -72.01284427, "center_lat": -13.56606903},
+    # {"ciudad": "Huacho", "center_lon": -77.6508463, "center_lat": -11.149141},
+    # # {"ciudad": "Huancayo", "center_lon": -75.2778686, "center_lat": -12.113199},
+    # {"ciudad": "Huanuco", "center_lon": -76.2785276, "center_lat": -9.9680716},
+    # {"ciudad": "Huaral", "center_lon": -77.2553637, "center_lat": -11.5271079},
+    # {"ciudad": "Huaraz", "center_lon": -77.5618383, "center_lat": -9.5584525},
+    # # {"ciudad": "Ica", "center_lon": -75.781778, "center_lat": -14.12552},
+    # {"ciudad": "Ilo", "center_lon": -71.37158011, "center_lat": -17.6775188},
+    # {"ciudad": "Iquitos", "center_lon": -73.3177722, "center_lat": -3.808329},
+    # {"ciudad": "Juliaca", "center_lon": -70.2058917, "center_lat": -15.5970155},
+    # # {"ciudad": "Lima", "center_lon": -77.1864123, "center_lat": -12.856899},
+    {"ciudad": "Moquegua", "center_lon": -70.9816072, "center_lat": -17.2321443},
+    # {"ciudad": "Piura", "center_lon": -80.70302763, "center_lat": -5.254906},
+    {"ciudad": "Pucallpa", "center_lon": -74.6196149, "center_lat": -8.4333163},
+    {"ciudad": "Sullana", "center_lon": -80.77094037, "center_lat": -4.951375834},
+    {"ciudad": "Tacna", "center_lon": -70.308191, "center_lat": -18.08283478},
+    {"ciudad": "Talara", "center_lon": -81.305947, "center_lat": -4.617656},
+    # {"ciudad": "Trujillo", "center_lon": -79.08967037, "center_lat": -8.16871}
 ]
+
 
 # Iterar sobre las ciudades
 for info in ciudades:
     procesar_ciudad(**info)
+
+
+
+# Ejecutar en bash : 
+# head -n 1 data/*.csv | head -n 1 > hexagonos_peru_completo.csv && tail -n +2 -q data/*.csv >> hexagonos_peru_completo.csv
